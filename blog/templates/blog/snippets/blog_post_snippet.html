@@ -27,7 +27,11 @@
 				<p class="card-text">{{blog_post.body|safe|truncatechars:250}}</p>
 				{% if blog_post.author == request.user %}
 					<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
-				{% endif %}
+					{% endif %}	
+
+	
+
+
 			</div>
 			<div class="card-footer text-muted">
 			  Updated on {{blog_post.date_updated}} by {{blog_post.author}}
@@ -52,3 +56,24 @@
 	</div>
 </div>
 {% endif %}
+
+{% if all_items %}
+    <table class ='table table-bordered'>   
+    {% for things in all_items %}
+        {% if things.completed %}
+            <tr class = 'table-secondary'>
+                <td class = 'striker'><a href = "{% url 'edit' things.id %}">{{things.item }}</a></td> 
+                <td><center><a href = "{% url 'uncross' things.id %}"> Uncross </a></center></td>
+                <td><center><a  href = "{% url 'delete' things.id %}"> Delete </a></center></td>
+            </tr>
+        {% else %}
+
+            <tr>
+                <td><a href = "{% url 'edit' things.id %}">{{things.item }}</a></td> 
+                <td><center><a href = "{% url 'cross_off' things.id %}">Cross Off </a></center></td>
+                <td><center><a  href = "{% url 'delete' things.id %}"> Delete </a></center></td>
+            </tr>
+        {% endif %}   
+    {% endfor %}
+    </table>
+	{% endif %}

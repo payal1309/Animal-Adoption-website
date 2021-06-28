@@ -26,6 +26,9 @@
 				<p>
 					{% if blog_post.author == request.user %}
 						<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
+						<button type="button">
+							<a href="{% url 'client_upload_delete' %}">Delete</a>
+						</button>
 					{% endif %}
 				</p>
 				

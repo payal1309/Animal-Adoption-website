@@ -21,6 +21,8 @@ from django.conf import settings
 
 from personal.views import (
 	home_screen_view,
+    main_screen_view,
+    adopt_animal_view,
 )
 
 from account.views import (
@@ -29,10 +31,11 @@ from account.views import (
     login_view,
     account_view,
     must_authenticate_view,
+
 )
 
 urlpatterns = [
-    path('', home_screen_view, name="home"),
+    path('/', home_screen_view, name="home"),
     path('admin/', admin.site.urls),
     path('account/', account_view, name="account"),
     path('blog/', include('blog.urls', 'blog')),
@@ -40,6 +43,9 @@ urlpatterns = [
     path('logout/', logout_view, name="logout"),
     path('must_authenticate/', must_authenticate_view, name="must_authenticate"),
     path('register/', registration_view, name="register"),
+    path('',main_screen_view , name = 'main'),
+    path('add/',adopt_animal_view , name = "add"),
+
 	
 	# REST-framework
     path('api/blog/', include('blog.api.urls', 'blog_api')),

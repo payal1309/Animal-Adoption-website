@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.http import HttpResponse
+from django.views.generic import DeleteView
+from django.contrib import messages
 
 from blog.models import BlogPost
 from blog.forms import CreateBlogPostForm, UpdateBlogPostForm
@@ -86,3 +88,24 @@ def get_blog_queryset(query=None):
 			queryset.append(post)
 
 	return list(set(queryset))	
+
+
+def delete(request , blog_id):
+    item = BlogPost.objects.get(pk=blog_id)
+    item.delete()
+    messages.success(request ,('Item has been deleted'))
+    return redirect('home')
+
+def cross_off(request , blog_id):
+    item = BlogPost.objects.get(pk=blog_id)
+    item.completed = True
+    item.save()
+    return redirect('home')
+
+
+def uncross(request , blog_id):
+    item = BlogPost.objects.get(pk=blog_id)
+    item.completed = False
+    item.save()
+    return redirect('home')
+

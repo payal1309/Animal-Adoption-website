@@ -88,6 +88,8 @@
           <a href="{% url 'blog:detail' post.slug %}" style="text-decoration: none;">
             <li class="list-group-item">{{post}}</li>
           </a>
+          <a href="{% url 'blog:detail' post.slug %}" style="text-decoration: none;">
+            <li class="list-group-item">{{post}}</li>
         {% endfor %}
       </ul>
       {% else %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render 
 from operator import attrgetter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -34,3 +34,12 @@ def home_screen_view(request):
 	context['blog_posts'] = blog_posts
 
 	return render(request, "personal/home.html", context)
+
+def main_screen_view(request):
+
+	return render(request, "personal/main.html")
+
+
+def adopt_animal_view(request):
+
+	return render(request, "personal/add.html")
